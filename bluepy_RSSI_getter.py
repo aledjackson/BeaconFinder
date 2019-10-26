@@ -22,28 +22,30 @@ class ScanDelegate(DefaultDelegate):
                 if desc == "Manufacturer" and value == manufacturer:
                     global_RSSIs.append(dev.rssi)
 
-    def gatherAverageRSSI(self,manufacturer, n_samples):
-        global_RSSIs = []
-        while len(global_RSSIs) < n_samples:
-            scanner.scan(1.0)
-        mean_rssi = mean(global_RSSIs)
-        std_dev = std(global_RSSIs)
 
-        cutoff_rssi = []
+def gatherAverageRSSI(self,manufacturer, n_samples, scanner):
+    global_RSSIs = []
+    while len(global_RSSIs) < n_samples:
+        scanner.scan(1.0)
+    mean_rssi = mean(global_RSSIs)
+    std_dev = std(global_RSSIs)
 
-        lower_cutoff = mean_rssi - std_dev
-        upper_cutoff = mean_rssi + std_dev
-        for x in global_RSSIs:
-            if not (x < lower_cutoff or x > upper_cutoff):
-                cutoff_rssi.append(x)
-        
-        return mean(cutoff_rssi)
+    cutoff_rssi = []
 
+    lower_cutoff = mean_rssi - std_dev
+    upper_cutoff = mean_rssi + std_dev
+    for x in global_RSSIs:
+        if not (x < lower_cutoff or x > upper_cutoff):
+            cutoff_rssi.append(x)
+    
+    return mean(cutoff_rssi)
 
 
 
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
 scanner = Scanner().withDelegate(ScanDelegate())
 
-scanner.gatherAverageRSSI(manufacturer, 10)
+
+
+gatherAverageRSSI(manufacturer, 10, scanner)
 
