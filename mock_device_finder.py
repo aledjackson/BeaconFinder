@@ -30,7 +30,7 @@ def gatherAverageRSSI(manufacturer, n_samples, scanner):
     RSSIs= []
 
     while len(RSSIs) < n_samples:
-        new_devices = scanner.scan(1.0)
+        new_devices = scanner.scan(5.0)
         for dev in new_devices:
             for (adtype, desc, value) in dev.getScanData():
                 if desc == "Manufacturer" and value == manufacturer:
@@ -67,7 +67,7 @@ def rotate(angle):
     return
 
 
-rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+rssi = gatherAverageRSSI(manufacturer, 7, scanner)
 
 # define whether to rotate clockwise or anticlockwise
 rotate_dir = 1
@@ -79,23 +79,23 @@ while rssi < -40:
     mv_distance = abs(rssi) * 0.02
     move(mv_distance)
     last_rssi = rssi
-    rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+    rssi = gatherAverageRSSI(manufacturer, 7, scanner)
     if last_rssi > rssi:
         rotate(180)
         move(mv_distance / 2)
         rotate(rotate_dir * 90)
         last_rssi = rssi
-        rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+        rssi = gatherAverageRSSI(manufacturer, 7, scanner)
         mv_distance = abs(rssi) * 0.02
         move(mv_distance)
         last_rssi = rssi
-        rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+        rssi = gatherAverageRSSI(manufacturer, 7, scanner)
         if last_rssi > rssi:
             rotate_dir = rotate_dir * -1
             rotate(180)
             move(mv_distance * 2)
             last_rssi = rssi
-            rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+            rssi = gatherAverageRSSI(manufacturer, 7, scanner)
 
 
 
