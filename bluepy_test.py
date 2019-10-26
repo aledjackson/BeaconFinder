@@ -24,7 +24,7 @@ for dev in devices:
     print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
 
     for (adtype, desc, value) in dev.getScanData():
-        if (desc == "Complete Local Name"):
+        if (desc == "Complete Local Name" or desc == "Short Local Name"):
             print "  %s = %s" % (desc, value)
 
 
