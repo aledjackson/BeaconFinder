@@ -19,13 +19,16 @@ scanner = Scanner().withDelegate(ScanDelegate())
 # create a list of unique devices that the scanner discovered during a 10-second scan
 devices = scanner.scan(10.0)
 
+desc_set = set()
+
 # for each device  in the list of devices
 for dev in devices:
     print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
 
     for (adtype, desc, value) in dev.getScanData():
+        set.add(desc)
         if (desc == "Complete Local Name" or desc == "Short Local Name"):
             print "  %s = %s" % (desc, value)
 
-
+print(desc)
 
