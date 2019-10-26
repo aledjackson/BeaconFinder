@@ -29,7 +29,7 @@ for dev in devices:
         desc_set.add(desc)
 
         # print "  %s = %s" % (desc, value)
-        if (desc == "Manufacturer" and "01010101" in value) :
+        if ((desc == "Manufacturer" and "fec8" in value)) :
             print("found you boi")
             print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
             print "  %s = %s" % (desc, value)
