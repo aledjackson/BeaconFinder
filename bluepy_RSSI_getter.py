@@ -3,6 +3,8 @@ import sys
 
 MAC_addr = sys.argv[1]
 
+print "scanning for |" + MAC_addr + "|"
+
 # import the necessary parts of the bluepy library
 from bluepy.btle import Scanner, DefaultDelegate
 
@@ -13,6 +15,8 @@ class ScanDelegate(DefaultDelegate):
 
     # when this python script discovers a BLE broadcast packet, print a message with the device's MAC address
     def handleDiscovery(self, dev, isNewDev, isNewData):
+	if isNewDev:
+		print dev.addr
         if dev.addr == MAC_addr:
             print "RSSI : " + str(dev.rssi)
 
@@ -22,6 +26,6 @@ class ScanDelegate(DefaultDelegate):
 scanner = Scanner().withDelegate(ScanDelegate())
 
 while True:
-    scanner.scan(2.0)
+    scanner.scan(10.0)
 
 
