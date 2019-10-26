@@ -1,9 +1,9 @@
 import bluepy
 import sys
 
-MAC_addr = sys.argv[1]
+manufacturer = sys.argv[1]
 
-print "scanning for |" + MAC_addr + "|"
+print "scanning for device with manufacture data |" + manufacturer + "|"
 
 # import the necessary parts of the bluepy library
 from bluepy.btle import Scanner, DefaultDelegate
@@ -15,10 +15,10 @@ class ScanDelegate(DefaultDelegate):
 
     # when this python script discovers a BLE broadcast packet, print a message with the device's MAC address
     def handleDiscovery(self, dev, isNewDev, isNewData):
-	if isNewDev:
-		print dev.addr
-        if dev.addr == MAC_addr:
-            print "RSSI : " + str(dev.rssi)
+	for (adtype, desc, value) in dev.getScanData():
+            if desc == "Manufacturer" and value == manufacturer
+                print "RSSI : " + str(dev.rssi)
+
 
 
 

@@ -8,8 +8,9 @@ class ScanDelegate(DefaultDelegate):
 
     # when this python script discovers a BLE broadcast packet, print a message with the device's MAC address
     def handleDiscovery(self, dev, isNewDev, isNewData):
-        if isNewDev and isNewData:
-	    print "Discovered device", dev.addr
+        if isNewDev:
+            print "Discovered device", dev.addr
+        elif isNewData:
             print "Received new data from", dev.addr
 
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
