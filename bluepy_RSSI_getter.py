@@ -27,7 +27,8 @@ class ScanDelegate(DefaultDelegate):
 def gatherAverageRSSI(manufacturer, n_samples, scanner):
     global_RSSIs = []
     while len(global_RSSIs) < n_samples:
-        scanner.scan(1.0)
+        scanner.scan(10.0)
+        print("number of samples : " + str(len(global_RSSIs)))
     mean_rssi = mean(global_RSSIs)
     std_dev = std(global_RSSIs)
 
