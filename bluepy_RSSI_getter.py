@@ -121,7 +121,7 @@ class Scanner(BluepyHelper):
             else:
                     raise BTLEException(BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
 
-         mean_rssi = mean(RSSIs)
+        mean_rssi = mean(RSSIs)
         
         std_dev = stdev(rssi_scans)
 
