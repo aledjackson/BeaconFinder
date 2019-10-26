@@ -67,33 +67,35 @@ def rotate(angle):
     return
 
 
+rssi = gatherAverageRSSI(manufacturer, 10, scanner)
 
 # define whether to rotate clockwise or anticlockwise
 rotate_dir = 1
 
 
+
 # stop the method because we're close enough
-while rsi < -40:
-    mv_distance = abs(rsi) * 0.02
+while rssi < -40:
+    mv_distance = abs(rssi) * 0.02
     move(mv_distance)
-    last_rsi = rsi
-    rsi = gatherAverageRSSI(manufacturer, 10, scanner)
-    if last_rsi > rsi:
+    last_rssi = rssi
+    rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+    if last_rssi > rssi:
         rotate(180)
         move(mv_distance / 2)
         rotate(rotate_dir * 90)
-        last_rsi = rsi
-        rsi = gatherAverageRSSI(manufacturer, 10, scanner)
-        mv_distance = abs(rsi) * 0.02
+        last_rssi = rssi
+        rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+        mv_distance = abs(rssi) * 0.02
         move(mv_distance)
-        last_rsi = rsi
-        rsi = gatherAverageRSSI(manufacturer, 10, scanner)
-        if last_rsi > rsi:
+        last_rssi = rssi
+        rssi = gatherAverageRSSI(manufacturer, 10, scanner)
+        if last_rssi > rssi:
             rotate_dir = rotate_dir * -1
             rotate(180)
             move(mv_distance * 2)
-            last_rsi = rsi
-            rsi = gatherAverageRSSI(manufacturer, 10, scanner)
+            last_rssi = rssi
+            rssi = gatherAverageRSSI(manufacturer, 10, scanner)
 
 
 
