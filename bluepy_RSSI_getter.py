@@ -21,6 +21,7 @@ class ScanDelegate(DefaultDelegate):
         for (adtype, desc, value) in dev.getScanData():
                 if desc == "Manufacturer" and value == manufacturer:
                     global_RSSIs.append(dev.rssi)
+                    print("found one")
 
 
 def gatherAverageRSSI(manufacturer, n_samples, scanner):
