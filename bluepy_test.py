@@ -27,8 +27,13 @@ for dev in devices:
 
     for (adtype, desc, value) in dev.getScanData():
         desc_set.add(desc)
-        if (desc == "Complete Local Name" or desc == "Short Local Name"):
+        if (desc == "Manufacturer" and "00000000" in value) :
+            print("found you boi")
             print "  %s = %s" % (desc, value)
+
+
+        # if (desc == "Complete Local Name" or desc == "Short Local Name" or desc == ""):
+        #     print "  %s = %s" % (desc, value)
 
 
 print "printing the sets"
