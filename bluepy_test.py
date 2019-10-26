@@ -27,7 +27,7 @@ for dev in devices:
 
     for (adtype, desc, value) in dev.getScanData():
         desc_set.add(desc)
-        if (desc == "Manufacturer" and "00000000" in value) :
+        if (desc == "Manufacturer" and "01010101" in value) :
             print("found you boi")
             print "  %s = %s" % (desc, value)
 
