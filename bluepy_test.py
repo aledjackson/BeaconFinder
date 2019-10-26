@@ -30,5 +30,7 @@ for dev in devices:
         if (desc == "Complete Local Name" or desc == "Short Local Name"):
             print "  %s = %s" % (desc, value)
 
-print(desc)
+
+print "printint the sets"
+print desc
 
