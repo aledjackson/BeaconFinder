@@ -31,6 +31,7 @@ for dev in devices:
             print "  %s = %s" % (desc, value)
 
 
-print "printint the sets"
-print desc
+print "printing the sets"
+for x in desc_set:
+    print x
 
