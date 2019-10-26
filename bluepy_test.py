@@ -23,14 +23,15 @@ desc_set = set()
 
 # for each device  in the list of devices
 for dev in devices:
-    print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
+    
 
     for (adtype, desc, value) in dev.getScanData():
         desc_set.add(desc)
 
-        print "  %s = %s" % (desc, value)
+        # print "  %s = %s" % (desc, value)
         if (desc == "Manufacturer" and "01010101" in value) :
             print("found you boi")
+            print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
             print "  %s = %s" % (desc, value)
 
 
