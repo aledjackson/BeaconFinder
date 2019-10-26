@@ -1,6 +1,6 @@
 import bluepy
 import sys
-from bluepy.btle import DefaultDelegate, BluepyHelper
+from bluepy.btle import DefaultDelegate, BluepyHelper, ScanEntry
 from statistics import stdev, mean
 import binascii
 
