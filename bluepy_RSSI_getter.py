@@ -45,7 +45,6 @@ def gatherAverageRSSI(manufacturer, n_samples, scanner):
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
 scanner = Scanner().withDelegate(ScanDelegate())
 
-
-
-gatherAverageRSSI(manufacturer, 10, scanner)
+while True:
+    print(gatherAverageRSSI(manufacturer, 10, scanner))
 
