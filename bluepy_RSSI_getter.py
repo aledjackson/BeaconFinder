@@ -21,6 +21,7 @@ class ScanDelegate(DefaultDelegate):
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
 scanner = Scanner().withDelegate(ScanDelegate())
 
-scanner.scan(10.0)
+while True:
+    scanner.scan(2.0)
 
 
