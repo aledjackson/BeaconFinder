@@ -39,9 +39,6 @@ class ScanDelegate(DefaultDelegate):
         return mean(cutoff_rssi)
 
 
-        
-        return float(self._RSSIsum) / float(self._RSSIcount)
-
 
 
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
