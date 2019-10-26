@@ -20,23 +20,29 @@ class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
         for (adtype, desc, value) in dev.getScanData():
                 if desc == "Manufacturer" and value == manufacturer:
-                    global_RSSIs.append(dev.rssi)
                     print("found one")
 
 
 def gatherAverageRSSI(manufacturer, n_samples, scanner):
-    global_RSSIs = []
-    while len(global_RSSIs) < n_samples:
-        scanner.scan(10.0)
-        print("number of samples : " + str(len(global_RSSIs)))
-    mean_rssi = mean(global_RSSIs)
-    std_dev = std(global_RSSIs)
+    RSSIs= []
+
+    while len(RSSIs) < n_samples:
+        new_devices = scanner.scan(1.0)
+        for dev in new_devices:
+            for (adtype, desc, value) in dev.getScanData():
+                if desc == "Manufacturer" and value == manufacturer:
+                    RSSIs.append(dev.rssi)
+
+
+
+    mean_rssi = mean(RSSIs)
+    std_dev = std(RSSIs)
 
     cutoff_rssi = []
 
     lower_cutoff = mean_rssi - std_dev
     upper_cutoff = mean_rssi + std_dev
-    for x in global_RSSIs:
+    for x in RSSIs:
         if not (x < lower_cutoff or x > upper_cutoff):
             cutoff_rssi.append(x)
     
