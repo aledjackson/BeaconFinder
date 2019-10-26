@@ -1,5 +1,6 @@
 import bluepy
 import sys
+from statistics import stdev
 
 manufacturer = sys.argv[1]
 
@@ -23,6 +24,11 @@ class ScanDelegate(DefaultDelegate):
                     print("found one")
 
 
+def mean(numbers):
+    if len(numbers) == 0:
+        return None
+    return float(sum(numbers)) / max(len(numbers), 1)
+
 def gatherAverageRSSI(manufacturer, n_samples, scanner):
     RSSIs= []
 
@@ -36,7 +42,7 @@ def gatherAverageRSSI(manufacturer, n_samples, scanner):
 
 
     mean_rssi = mean(RSSIs)
-    std_dev = std(RSSIs)
+    std_dev = stdev(RSSIs)
 
     cutoff_rssi = []
 
