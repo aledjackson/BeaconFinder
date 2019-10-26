@@ -1,12 +1,14 @@
 import bluepy
 import sys
+from bluepy.btle import DefaultDelegate, BluepyHelper
+from statistics import stdev, mean
+import binascii
 
 manufacturer = sys.argv[1]
 
 print "scanning for device with manufacture data |" + manufacturer + "|"
 
-from bluepy.btle import DefaultDelegate, BluepyHelper
-from statistics import stdev, mean
+
 
 class Scanner(BluepyHelper):
 
