@@ -23,7 +23,7 @@ class ScanDelegate(DefaultDelegate):
                     global_RSSIs.append(dev.rssi)
 
 
-def gatherAverageRSSI(self,manufacturer, n_samples, scanner):
+def gatherAverageRSSI(manufacturer, n_samples, scanner):
     global_RSSIs = []
     while len(global_RSSIs) < n_samples:
         scanner.scan(1.0)
