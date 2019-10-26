@@ -93,7 +93,10 @@ class Scanner(BluepyHelper):
         rssi_scans = []
 
         while len(rssi_scans) < n_samples:
-            resp = self._waitResp(['scan', 'stat'], remain)
+            # wait 3 seconds before a timeout       
+            resp = self._waitResp(['scan', 'stat'], 3.0)
+            #                                        ^
+
             if resp is None:
                 break
 
