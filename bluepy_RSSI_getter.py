@@ -15,9 +15,9 @@ class ScanDelegate(DefaultDelegate):
 
     # when this python script discovers a BLE broadcast packet, print a message with the device's MAC address
     def handleDiscovery(self, dev, isNewDev, isNewData):
-	for (adtype, desc, value) in dev.getScanData():
-            if desc == "Manufacturer" and value == manufacturer
-                print "RSSI : " + str(dev.rssi)
+        for (adtype, desc, value) in dev.getScanData():
+                if desc == "Manufacturer" and value == manufacturer:
+                    print "RSSI : " + str(dev.rssi)
 
 
 
